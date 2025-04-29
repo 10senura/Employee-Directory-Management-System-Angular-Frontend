@@ -1,90 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Management System</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="dashboard-container">
-        <header class="dashboard-header">
-            <h1>Employee Management System</h1>
+<div class="app-container">
+  <div class="app-container">
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h3>Menu</h3>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="active"><a href="#"><i class="icon-dashboard"></i> Dashboard</a></li>
+          <li><a href="#"><i class="icon-employees"></i> List</a></li>
+          <li><a href="#"><i class="icon-departments"></i> Form</a></li>
+          <li><a href="#"><i class="icon-reports"></i> Reports</a></li>
+          <li><a href="#"><i class="icon-settings"></i> Settings</a></li>
+        </ul>
+      </div>
+    
+      <div class="main-content">
+        <header class="app-header">
+          <h1>Employee Management System</h1>
+          <div class="user-profile">
+            <span>Admin User</span>
+            <img src="user-avatar.png" alt="User Avatar">
+          </div>
         </header>
-        
-        <div class="dashboard-content">
-            <div class="control-panel">
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Search employees...">
-                    <button id="searchBtn">Search</button>
-                </div>
-                
-                <button id="addEmployeeBtn" class="btn-primary">Add New Employee</button>
-            </div>
-            
-            <div class="employee-table-container">
-                <table id="employeeTable">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Department</th>
-                            <th>Salary</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="employeeTableBody">
-                        <!-- Employee data will be inserted here -->
-                    </tbody>
-                </table>
-            </div>
+    
+        <div class="action-buttons">
+          <button class="btn btn-add" id="addEmployee">
+            <i class="icon-plus"></i> Add Employee
+          </button>
+          <button class="btn btn-update" id="updateEmployee" disabled>
+            <i class="icon-edit"></i> Update
+          </button>
+          <button class="btn btn-delete" id="deleteEmployee" disabled>
+            <i class="icon-trash"></i> Delete
+          </button>
+          <div class="search-box">
+            <input type="text" placeholder="Search employees..." id="searchInput">
+            <button class="btn btn-search">
+              <i class="icon-search"></i>
+            </button>
+          </div>
         </div>
+    
+        <div class="table-container">
+          <table class="employee-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>created_at</th>
+                <th>updated_at</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="row-checkbox"></td>
+                <td>John Doe</td>
+                <td>johnexample.com</td>
+                <td>IT</td>
+                <td>2025-04-29 11:50:58.768794</td>
+                <td><span class="status active"> 2025-04-29 11:50:58.773788</span></td>
+                <td>
+                  <button class="btn-action btn-edit"><i class="icon-edit"></i></button>
+                  <button class="btn-action btn-delete"><i class="icon-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="row-checkbox"></td>
+                <td>Jane Smith</td>
+                <td>janeexample.com</td>
+                <td>HR</td>
+                <td>2025-04-29 12:01:53.669677</td>
+                <td><span class="status active"> 2025-04-29 12:01:53.669677</span></td>
+                <td>
+                  <button class="btn-action btn-edit"><i class="icon-edit"></i></button>
+                  <button class="btn-action btn-delete"><i class="icon-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <footer class="app-footer">
+          <p>&copy; 2025 Employee Management System</p>
+        </footer>
+      </div>
     </div>
     
-    <!-- Add/Edit Employee Modal -->
-    <div id="employeeModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modalTitle">Add New Employee</h2>
-            
-            <form id="employeeForm">
-                <input type="hidden" id="employeeId">
-                
-                <div class="form-group">
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="position">Position:</label>
-                    <input type="text" id="position" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="department">Department:</label>
-                    <select id="department" required>
-                        <option value="">Select Department</option>
-                        <option value="IT">IT</option>
-                        <option value="HR">HR</option>
-                        <option value="Finance">Finance</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Operations">Operations</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="salary">Salary (LKR):</label>
-                    <input type="number" id="salary" min="0" required>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">Save</button>
-                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
-                </div>
-            </form>
-        </div>
+    <div class="modal" id="employeeModal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Add New Employee</h2>
+        <form id="employeeForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="department">Department</label>
+            <select id="department" required>
+              <option value="">Select Department</option>
+              <option value="IT">IT</option>
+              <option value="HR">HR</option>
+              <option value="Finance">Finance</option>
+              <option value="Marketing">Marketing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="position">Position</label>
+            <input type="text" id="position" required>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-save">Save</button>
+            <button type="button" class="btn btn-cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
-    
-</body>
-</html>
+  
+  <footer class="app-footer">
+    <p>&copy; 2025 Employee Management System</p>
+  </footer>
+</div>
