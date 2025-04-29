@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule,  } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-employee-form',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './employee-form.component.html',
-  styleUrl: './employee-form.component.css'
+  styleUrls: ['./employee-form.component.css']
 })
+
 export class EmployeeFormComponent {
 
 }
+     

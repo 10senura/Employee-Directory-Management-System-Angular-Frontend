@@ -1,1 +1,90 @@
-<p>navigation works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Employee Management System</h1>
+        </header>
+        
+        <div class="dashboard-content">
+            <div class="control-panel">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search employees...">
+                    <button id="searchBtn">Search</button>
+                </div>
+                
+                <button id="addEmployeeBtn" class="btn-primary">Add New Employee</button>
+            </div>
+            
+            <div class="employee-table-container">
+                <table id="employeeTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeTableBody">
+                        <!-- Employee data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Employee Modal -->
+    <div id="employeeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Employee</h2>
+            
+            <form id="employeeForm">
+                <input type="hidden" id="employeeId">
+                
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="position">Position:</label>
+                    <input type="text" id="position" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <select id="department" required>
+                        <option value="">Select Department</option>
+                        <option value="IT">IT</option>
+                        <option value="HR">HR</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Operations">Operations</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="salary">Salary (LKR):</label>
+                    <input type="number" id="salary" min="0" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save</button>
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
