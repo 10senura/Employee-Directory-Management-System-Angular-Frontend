@@ -8,7 +8,7 @@ import { EmployeeLoginPageComponent } from "./page/Employee/employee-login-page/
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, EmployeeFormComponent, EmployeeLoginPageComponent , EmployeeLoginPageComponent],
+  imports: [RouterOutlet, EmployeeFormComponent, EmployeeLoginPageComponent , EmployeeLoginPageComponent,ViewEmployeeListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

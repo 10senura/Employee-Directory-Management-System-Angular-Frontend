@@ -4,8 +4,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Employee } from '../../../model/employee.model';
 import { EmployeeService } from '../../../../service/employee.service';
+
 @Component({
-  selector: 'view-app-employee-list',
+  selector: 'app-view-employee-list',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './view-employee-list.component.html',
@@ -13,8 +14,8 @@ import { EmployeeService } from '../../../../service/employee.service';
 })
 export class ViewEmployeeListComponent implements OnInit {
   employees: Employee[] = [];
-  loading = false;
-  error: string | null = null;
+  isLoading = true;
+  errorMessage = '';
 
   constructor(private employeeService: EmployeeService) { }
 
@@ -23,24 +24,19 @@ export class ViewEmployeeListComponent implements OnInit {
   }
 
   loadEmployees(): void {
-    this.loading = true;
-    this.error = null;
+    this.isLoading = true;
+    this.errorMessage = '';
     
     this.employeeService.getEmployees().subscribe({
       next: (data) => {
         this.employees = data;
-        this.loading = false;
+        this.isLoading = false;
       },
       error: (err) => {
-        this.error = 'Failed to load employees. Please try again later.';
-        this.loading = false;
-        console.error('Error loading employees:', err);
+        this.errorMessage = 'Failed to load employees. Please try again later.';
+        this.isLoading = false;
+        console.error(err);
       }
     });
-  }
-
-  formatDate(dateString: string): string {
-    if (!dateString) return '';
-    return new Date(dateString).toLocaleString();
   }
 }

@@ -1,44 +1,29 @@
-<div class="employee-list-container">
-    <h2>Employee Management System</h2>
-    
-    <div *ngIf="loading" class="loading-spinner">
-      Loading employees...
-    </div>
-    
-    <div *ngIf="error" class="error-message">
-      {{ error }}
-      <button (click)="loadEmployees()">Try Again</button>
-    </div>
-    
-    <table *ngIf="!loading && !error && employees.length > 0" class="employee-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Department</th>
-          <th>Created At</th>
-          <th>Updated At</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let employee of employees">
-          <td>{{ employee.id }}</td>
-          <td>{{ employee.name }}</td>
-          <td>{{ employee.email }}</td>
-          <td>{{ employee.department }}</td>
-          <td>{{ formatDate(employee.createdAt) }}</td>
-          <td>{{ formatDate(employee.updatedAt) }}</td>
-          <td class="actions">
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    
-    <div *ngIf="!loading && !error && employees.length === 0" class="no-data">
-      No employees found. Please add some employees.
-    </div>
-  </div>
+<!-- employee-list.component.html -->
+<div *ngIf="isLoading" class="loading">Loading employees...</div>
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<table *ngIf="employees.length > 0 && !isLoading">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <!-- Add more columns as needed -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.email }}</td>
+      <td>{{ employee.department }}</td>
+      <!-- Add more fields as needed -->
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="employees.length === 0 && !isLoading && !errorMessage">
+  No employees found.
+</div>
